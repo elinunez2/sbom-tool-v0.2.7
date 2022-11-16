@@ -30,6 +30,17 @@ jobs:
       
     - name: Build
       run: dotnet build --no-restore
+
+    - name: Generate SBOM
+      run: |
+        ls
+        Invoke-WebRequest -Uri "https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-win-x64.exe" -OutFile "${env:RUNNER_TEMP}/sbom-tool.exe"
+        & ${env:RUNNER_TEMP}/sbom-tool generate -b . -bc . -pn Test -pv 1.0.1 -ps Elijah_Nunez -nsb http://workflowtest/ -v Verbose
+    
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        path: ./_manifest
     
     - name: Test
       run: dotnet test --no-build --verbosity normal
