@@ -2,14 +2,14 @@ name: Build
 
 on:
   push:
-    branches: [ "nani" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "nani" ]
+    branches: [ "main" ]
   
 jobs:
   build:
     name: Build
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     env:
       OFFICIAL_BUILD: 'True'

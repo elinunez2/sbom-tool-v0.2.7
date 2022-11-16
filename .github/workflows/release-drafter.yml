@@ -3,7 +3,7 @@ name: Release Drafter
 on:
   push:
     branches:
-      - main
+      - nani
   workflow_dispatch:
 
 jobs:

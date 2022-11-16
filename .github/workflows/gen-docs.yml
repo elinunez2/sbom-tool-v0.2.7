@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - nani
     paths:
       - 'src/Microsoft.Sbom.Api/Config/Args/*.cs'
       - 'src/Microsoft.Sbom.Common/Config/IConfiguration.cs'
