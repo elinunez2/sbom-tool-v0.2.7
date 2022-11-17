@@ -30,12 +30,9 @@ jobs:
     
     - name: Generate SBOM
       run: |
-        curl -Lo $RUNNER_TEMP/sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
-        chmod +x $RUNNER_TEMP/sbom-tool
         curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b ${env:RUNNER_TEMP}/usr/local/bin
-        $RUNNER_TEMP/sbom-tool generate -b . -bc . -pn Test -pv 1.0.1 -ps Elijah_Nunez -nsb http://workflowtest/ -v Verbose
         mkdir syftsbom
-        syft convert ./_manifest/spdx_2.2/manifest.spdx.json -o spdx-tag-value=./syftsbom/sbomsyft.spdx
+        syft packages -o spdx-tag-value --file ./syftsbom/sbomsyft.spdx
     
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.0
