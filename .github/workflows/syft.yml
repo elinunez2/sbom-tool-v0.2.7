@@ -32,7 +32,7 @@ jobs:
       run: |
         curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b ${env:RUNNER_TEMP}/usr/local/bin
         mkdir syftsbom
-        syft packages . -o spdx-tag-value --file ./syftsbom/sbomsyft.spdx
+        syft packages . -o cyclonedx-xml --file ./syftsbom/sbomsyft.xml
     
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.0
